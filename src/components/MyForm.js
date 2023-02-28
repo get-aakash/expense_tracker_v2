@@ -20,7 +20,7 @@ export const MyForm = ({addTransaction})=>{
    
     return(
     <Form onSubmit={handleOnSubmit} className='border p-2 rounded shadow-lg'>
-      <Row className='gap-2'>
+      <Row className='gap-1'>
         <Col md={2}>
         <Form.Select onChange={handleChange} name='type' >
             <option value="">Type...</option>
@@ -28,7 +28,7 @@ export const MyForm = ({addTransaction})=>{
             <option value="expense">Expense</option>
           </Form.Select>
         </Col>
-        <Col md={4}>
+        <Col md={3}>
           <Form.Control onChange={handleChange} required name='title' placeholder="Transaction Title" />
         </Col>
         <Col md={2}>
