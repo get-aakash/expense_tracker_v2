@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom';
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
             <Link to="/" className="nav-link">Login</Link>
-            <Link to="/registration" className="nav-link">Sign Up</Link>
+            <Link to="/register" className="nav-link">Sign Up</Link>
             
           </Nav>
         </Navbar.Collapse>

@@ -38,7 +38,7 @@ export default function Login() {
                     <h3>Welcome back!</h3>
                     <hr />
                     {inputs.map((item, i) => (
-                        <CustomInput {...item} />
+                        <CustomInput key={i} {...item} />
                     ))}
 
                     <Link to="/dashboard">
