@@ -3,8 +3,8 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { CustomInput } from '../components/CustomInput';
 import Layout from '../components/Layout';
-import { ToastContainer, toast } from 'react-toastify';
-import {randomStrGenerator} from 'src/utils.js'
+import { toast } from 'react-toastify';
+import {randomStrGenerator} from '../utils'
 
 const initialState = {
   fname:"",
@@ -14,8 +14,8 @@ const initialState = {
   confirmPassword:""
 }
 
-export default function Registration() {
-  const [frm, setFrm] = useState({})
+export const Registration =()=> {
+  const [frm, setFrm] = useState(initialState)
   const[error, setError] = useState("")
 
   const handleOnChange = (e) => {

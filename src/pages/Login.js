@@ -1,14 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import Layout from '../components/Layout';
 import { CustomInput } from '../components/CustomInput';
+import { toast } from 'react-toastify';
 
 
 export default function Login() {
     const navigate = useNavigate()
+    const [formDt, setFormDt] = useState({});
     const inputs = [
         {
             label: "Email",
@@ -26,9 +28,27 @@ export default function Login() {
 
         }
     ]
-    const handleOnSubmit = (e)=>{
-        e.preventDefault()
-        navigate("/dashboard")
+
+    const handleOnChange = (e) => {
+        const { name, value } = e.target;
+
+        setFormDt({
+            ...formDt,
+            [name]: value,
+        });
+    }
+    const handleOnSubmit = (e) => {
+        e.preventDefault();
+        console.log(formDt);
+
+        const usersStr = localStorage.getItem("users");
+        const userList = usersStr ? JSON.parse(usersStr) : [];
+
+        const user = userList.find(({ email, password }) => {
+            return email === formDt.email && password === formDt.password;
+        });
+
+        user?.email ? navigate("/dashboard") : toast.error("Invalid login details");
     }
     return (
         <Layout>
@@ -38,14 +58,16 @@ export default function Login() {
                     <h3>Welcome back!</h3>
                     <hr />
                     {inputs.map((item, i) => (
-                        <CustomInput key={i} {...item} />
+                        <CustomInput key={i} {...item} onChange={handleOnChange} />
                     ))}
 
-                    <Link to="/dashboard">
+
+                    <div className="d-grid mb-3">
                         <Button variant="primary" type="submit">
                             Login
                         </Button>
-                    </Link>
+                    </div>
+
 
                     <div className='text-end'>
                         Forget Password? <a href='/password-reset'>Reset</a>
