@@ -5,4 +5,5 @@ export const randomStrGenerator = length =>{
         const charPosition = Math.round(Math.random()*collectionStr.length)
         str += collectionStr[charPosition]
     }
+    return str;
 }

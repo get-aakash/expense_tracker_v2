@@ -19,7 +19,14 @@ function App() {
         <Routes>
           <Route path='/' element={<Login />} />
           <Route path='register' element={<Registration />} />
-          <Route path='dashboard' element={<PrivateRouter><Dashboard /></PrivateRouter>} />
+          <Route
+            path="dashboard"
+            element={
+              <PrivateRouter>
+                <Dashboard />
+              </PrivateRouter>
+            }
+          />
           <Route path='password-reset' element={<ForgetPassword />} />
         </Routes>
       </BrowserRouter>

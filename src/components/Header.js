@@ -12,9 +12,20 @@ import { Link } from 'react-router-dom';
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <Link to="/" className="nav-link">Login</Link>
-            <Link to="/register" className="nav-link">Sign Up</Link>
-            
+           {/* {!user?.fName ? ( */}
+           <>
+              <Link to="/" className="nav-link">
+                Login
+              </Link>
+              <Link to="/register" className="nav-link">
+                Sign Up
+              </Link>
+            </>
+            {/* ) : ( */}
+            <Link to="/" className="nav-link">
+              Log Out
+            </Link>
+            {/* )} */}
           </Nav>
         </Navbar.Collapse>
       </Container>

@@ -1,10 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Col, Container, Row } from 'react-bootstrap';
 import DisplayTable from '../components/DisplayTable';
+import Layout from '../components/Layout';
 import { MyForm } from '../components/MyForm';
 
 export default function Dashboard() {
     const [lists, setList] = useState([])
+    const [user, setUser] = useState({});
+    useEffect(() => {
+        const userStr = sessionStorage.getItem("logedInUser");
+        if (userStr) {
+          setUser(JSON.parse(userStr));
+        }
+      }, []);
     const addTransaction = (data) => {
         setList([...lists, data])
     }
@@ -16,10 +24,11 @@ export default function Dashboard() {
 
     }
     return (
-        <div>
+        <Layout>
             <Container>
                 <Row>
                     <Col>
+                    <div>Welcome {user.fname}</div>
                         <h2 className='text-center mt-5'>Expense Tracker</h2>
 
                     </Col>
@@ -29,6 +38,6 @@ export default function Dashboard() {
                 <hr />
                 <DisplayTable lists={lists} handleOnDelete={hadleOnDelete} />
             </Container>
-        </div>
+        </Layout>
     )
 }

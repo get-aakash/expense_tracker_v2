@@ -43,12 +43,18 @@ export default function Login() {
 
         const usersStr = localStorage.getItem("users");
         const userList = usersStr ? JSON.parse(usersStr) : [];
+        
 
         const user = userList.find(({ email, password }) => {
             return email === formDt.email && password === formDt.password;
         });
-
-        user?.email ? navigate("/dashboard") : toast.error("Invalid login details");
+        console.log(user.email)
+        if (user?.email) {
+            navigate("/dashboard");
+            sessionStorage.setItem("logedInUser", JSON.stringify(user));
+          } else {
+            toast.error("Invalid login details");
+          }
     }
     return (
         <Layout>
